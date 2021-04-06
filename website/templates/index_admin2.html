@@ -1,0 +1,33 @@
+{% extends 'base_admin2.html' %}
+
+{% block corpo %}
+
+ <h1>Postagens</h1>
+ <a href="{% url 'add_post' %}" class="btn btn-success">Nova postagem</a>
+  <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Titulo</th>
+          <th scope="col">Autor</th>
+          <th scope="col">Status</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if Posts %}
+        {% for post in Posts %}
+        <tr>
+          <td scope="row">{{ post.title }}</td>
+          <td>{{ post.autor }}</td>
+          <td>{{ post.status }}</td>
+            <td>
+              <a href="{% url 'edit_post' post.id %}" class="btn btn-warning">EDITAR</a>
+              <a href="{% url 'excluir_post' post.id %}" class="btn btn-danger">EXCLUIR</a>
+            </td>
+        </tr>
+      {% endfor %}
+      {% endif%}
+
+      </tbody>
+    </table>
+{% endblock %}
